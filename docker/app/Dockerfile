@@ -1,4 +1,4 @@
-FROM php:7.4.1-fpm
+FROM php:8.1-fpm
 
 # php.iniをコピー
 COPY ./docker/app/php.ini /usr/local/etc/app/php.ini
@@ -18,6 +18,14 @@ RUN apt-get update \
     unzip \
     vim \
     libicu-dev \
+    libzip-dev \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd \
+    && docker-php-ext-install zip \
+    && docker-php-ext-configure intl \
     && docker-php-ext-install intl \
     && docker-php-ext-install pdo_mysql bcmath 
 

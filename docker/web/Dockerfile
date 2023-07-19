@@ -1,4 +1,4 @@
-FROM nginx:1.18
+FROM nginx
 
 # 環境変数(TZ)を定義
 ENV TZ=UTC
